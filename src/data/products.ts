@@ -1,0 +1,617 @@
+import { Product, Category } from '../types';
+
+export const categories: Category[] = [
+  { id: 'food', name: 'Comida', emoji: '🍔', gradient: 'from-orange-500 to-red-500', color: '#f97316' },
+  { id: 'tech', name: 'Tech', emoji: '📱', gradient: 'from-blue-500 to-cyan-500', color: '#3b82f6' },
+  { id: 'fashion', name: 'Moda', emoji: '👟', gradient: 'from-pink-500 to-purple-500', color: '#ec4899' },
+  { id: 'beauty', name: 'Belleza', emoji: '💄', gradient: 'from-purple-500 to-pink-500', color: '#a855f7' },
+  { id: 'home', name: 'Hogar', emoji: '🏠', gradient: 'from-green-500 to-emerald-500', color: '#10b981' },
+  { id: 'gaming', name: 'Gaming', emoji: '🎮', gradient: 'from-violet-500 to-indigo-500', color: '#7c3aed' },
+  { id: 'sports', name: 'Deportes', emoji: '💪', gradient: 'from-red-500 to-orange-500', color: '#ef4444' },
+  { id: 'pets', name: 'Mascotas', emoji: '🐶', gradient: 'from-amber-500 to-yellow-500', color: '#f59e0b' },
+  { id: 'toys', name: 'Juguetes', emoji: '🧸', gradient: 'from-rose-400 to-pink-500', color: '#fb7185' },
+  { id: 'books', name: 'Libros', emoji: '📚', gradient: 'from-amber-700 to-orange-600', color: '#b45309' },
+  { id: 'auto', name: 'Auto', emoji: '🚗', gradient: 'from-slate-500 to-gray-600', color: '#64748b' },
+  { id: 'wellness', name: 'Bienestar', emoji: '🧘', gradient: 'from-teal-500 to-cyan-500', color: '#14b8a6' },
+  { id: 'drinks', name: 'Bebidas', emoji: '🍷', gradient: 'from-red-700 to-rose-600', color: '#be123c' },
+  { id: 'music', name: 'Música', emoji: '🎸', gradient: 'from-indigo-500 to-violet-600', color: '#6366f1' },
+];
+
+// Image pools
+const foodImgs = [
+  'https://images.pexels.com/photos/5041475/pexels-photo-5041475.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/7243413/pexels-photo-7243413.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/30504705/pexels-photo-30504705.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/14678998/pexels-photo-14678998.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/8743917/pexels-photo-8743917.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/12129480/pexels-photo-12129480.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/9258712/pexels-photo-9258712.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/27590338/pexels-photo-27590338.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/2955819/pexels-photo-2955819.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/34718258/pexels-photo-34718258.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/1055272/pexels-photo-1055272.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/9271569/pexels-photo-9271569.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/15823267/pexels-photo-15823267.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/5151354/pexels-photo-5151354.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/15800991/pexels-photo-15800991.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/17558647/pexels-photo-17558647.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/31064587/pexels-photo-31064587.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/26341195/pexels-photo-26341195.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/8609973/pexels-photo-8609973.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/6697469/pexels-photo-6697469.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/29306502/pexels-photo-29306502.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/343870/pexels-photo-343870.jpeg?auto=compress&cs=tinysrgb&w=600',
+];
+
+const techImgs = [
+  'https://images.pexels.com/photos/7989741/pexels-photo-7989741.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/4225229/pexels-photo-4225229.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/18311088/pexels-photo-18311088.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/28977357/pexels-photo-28977357.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/29765810/pexels-photo-29765810.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/4526407/pexels-photo-4526407.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/15840650/pexels-photo-15840650.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/29581125/pexels-photo-29581125.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/3394648/pexels-photo-3394648.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/16542159/pexels-photo-16542159.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/8839887/pexels-photo-8839887.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/6157408/pexels-photo-6157408.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&cs=tinysrgb&w=600',
+];
+
+const fashionImgs = [
+  'https://images.pexels.com/photos/4296075/pexels-photo-4296075.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/10284607/pexels-photo-10284607.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/3649765/pexels-photo-3649765.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/27988923/pexels-photo-27988923.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/11435388/pexels-photo-11435388.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/27113470/pexels-photo-27113470.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/32677205/pexels-photo-32677205.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/28666274/pexels-photo-28666274.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/8125853/pexels-photo-8125853.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/38366764/pexels-photo-38366764.jpeg?auto=compress&cs=tinysrgb&w=600',
+];
+
+const beautyImgs = [
+  'https://images.pexels.com/photos/6527699/pexels-photo-6527699.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/6527702/pexels-photo-6527702.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/6527697/pexels-photo-6527697.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/24602077/pexels-photo-24602077.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/24602064/pexels-photo-24602064.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/31251024/pexels-photo-31251024.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/6958875/pexels-photo-6958875.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/28406043/pexels-photo-28406043.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/35930230/pexels-photo-35930230.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/9329773/pexels-photo-9329773.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/10420563/pexels-photo-10420563.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/29060213/pexels-photo-29060213.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/16722498/pexels-photo-16722498.jpeg?auto=compress&cs=tinysrgb&w=600',
+];
+
+const homeImgs = [
+  'https://images.pexels.com/photos/9070106/pexels-photo-9070106.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/9070116/pexels-photo-9070116.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/38390562/pexels-photo-38390562.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/9277080/pexels-photo-9277080.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/7233906/pexels-photo-7233906.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/20324601/pexels-photo-20324601.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/18620049/pexels-photo-18620049.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/28445615/pexels-photo-28445615.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/20541349/pexels-photo-20541349.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/38489183/pexels-photo-38489183.jpeg?auto=compress&cs=tinysrgb&w=600',
+];
+
+const gamingImgs = [
+  'https://images.pexels.com/photos/14642112/pexels-photo-14642112.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/6962206/pexels-photo-6962206.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/11591941/pexels-photo-11591941.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/12877898/pexels-photo-12877898.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/18311171/pexels-photo-18311171.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/29283981/pexels-photo-29283981.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/9071508/pexels-photo-9071508.jpeg?auto=compress&cs=tinysrgb&w=600',
+];
+
+const sportsImgs = [
+  'https://images.pexels.com/photos/11433027/pexels-photo-11433027.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/32610335/pexels-photo-32610335.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/16552841/pexels-photo-16552841.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/28970127/pexels-photo-28970127.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/14762165/pexels-photo-14762165.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/38463220/pexels-photo-38463220.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/28810901/pexels-photo-28810901.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/17098879/pexels-photo-17098879.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/15378702/pexels-photo-15378702.jpeg?auto=compress&cs=tinysrgb&w=600',
+];
+
+const petsImgs = [
+  'https://images.pexels.com/photos/15840816/pexels-photo-15840816.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/34027685/pexels-photo-34027685.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/19145595/pexels-photo-19145595.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/29112297/pexels-photo-29112297.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/38205942/pexels-photo-38205942.jpeg?auto=compress&cs=tinysrgb&w=600',
+];
+
+const toysImgs = [
+  'https://images.pexels.com/photos/37815946/pexels-photo-37815946.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/10854625/pexels-photo-10854625.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/20387931/pexels-photo-20387931.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/7722004/pexels-photo-7722004.jpeg?auto=compress&cs=tinysrgb&w=600',
+];
+
+const booksImgs = [
+  'https://images.pexels.com/photos/4170628/pexels-photo-4170628.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/7998492/pexels-photo-7998492.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/34889792/pexels-photo-34889792.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/8456832/pexels-photo-8456832.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/34299321/pexels-photo-34299321.jpeg?auto=compress&cs=tinysrgb&w=600',
+];
+
+const autoImgs = [
+  'https://images.pexels.com/photos/17623835/pexels-photo-17623835.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/8526611/pexels-photo-8526611.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/19986975/pexels-photo-19986975.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/4062185/pexels-photo-4062185.jpeg?auto=compress&cs=tinysrgb&w=600',
+];
+
+const wellnessImgs = [
+  'https://images.pexels.com/photos/8436580/pexels-photo-8436580.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/16148425/pexels-photo-16148425.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/16843771/pexels-photo-16843771.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/8436449/pexels-photo-8436449.jpeg?auto=compress&cs=tinysrgb&w=600',
+];
+
+const drinksImgs = [
+  'https://images.pexels.com/photos/34926023/pexels-photo-34926023.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/5624664/pexels-photo-5624664.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/35466913/pexels-photo-35466913.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/5238390/pexels-photo-5238390.jpeg?auto=compress&cs=tinysrgb&w=600',
+];
+
+const musicImgs = [
+  'https://images.pexels.com/photos/6580251/pexels-photo-6580251.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/31309915/pexels-photo-31309915.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/31309913/pexels-photo-31309913.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/33418892/pexels-photo-33418892.jpeg?auto=compress&cs=tinysrgb&w=600',
+];
+
+const imgPools: Record<string, string[]> = {
+  food: foodImgs, tech: techImgs, fashion: fashionImgs, beauty: beautyImgs,
+  home: homeImgs, gaming: gamingImgs, sports: sportsImgs, pets: petsImgs,
+  toys: toysImgs, books: booksImgs, auto: autoImgs, wellness: wellnessImgs,
+  drinks: drinksImgs, music: musicImgs,
+};
+
+const pickImg = (cat: string, i: number) => imgPools[cat][i % imgPools[cat].length];
+
+function genProducts(cat: string, items: Array<[string, number, number, number, number, string, number, string?]>): Product[] {
+  return items.map(([name, price, orig, rating, reviews, desc, discount, badge], i) => ({
+    id: `${cat}${i + 1}`,
+    name,
+    price,
+    originalPrice: orig,
+    image: pickImg(cat, i),
+    category: cat as any,
+    rating,
+    reviews,
+    badge,
+    description: desc,
+    discount,
+  }));
+}
+
+// ===================== FOOD (28) =====================
+const foodItems: Array<[string, number, number, number, number, string, number, string?]> = [
+  ['Burger Gourmet Deluxe', 8990, 12990, 4.9, 2341, 'Hamburguesa artesanal con queso fundido, lechuga fresca y salsa especial', 31, '🔥 TOP VENTAS'],
+  ['Sushi Premium Box 24pz', 15990, 22990, 4.8, 1892, 'Selección de 24 piezas de sushi con salmón fresco importado', 30, '⭐ PREMIUM'],
+  ['Pizza Italiana Suprema', 11990, 16990, 4.7, 3102, 'Pizza artesanal con masa madre, pepperoni y rúcula fresca', 29, '🍕 FAVORITA'],
+  ['Completo Italiano XL', 3990, 5490, 4.6, 5210, 'El clásico completo italiano con palta, tomate y mayo casera', 27, '🇨🇱 CHILENO'],
+  ['Ramen Tonkotsu Premium', 9990, 13990, 4.8, 1654, 'Ramen japonés con caldo de cerdo, huevo marinado y chashu', 29],
+  ['Bowl Mediterráneo Fit', 7990, 10990, 4.5, 987, 'Bowl con quinoa, falafel, hummus y vegetales frescos', 27],
+  ['Tacos al Pastor x6', 6990, 9990, 4.7, 2876, 'Seis tacos al pastor con piña, cilantro y salsa verde', 30, '🌮 MEXICANO'],
+  ['Tacos de Carne Asada', 7990, 11490, 4.8, 1543, 'Tacos de carne asada con guacamole fresco y salsa roja', 30],
+  ['Wrap Vegano Deluxe', 5990, 8490, 4.4, 876, 'Wrap vegano con falafel, hummus, vegetales y aderezo tahini', 29],
+  ['Torta Chocolate Belga', 12990, 18990, 4.9, 4321, 'Torta de chocolate belga con ganache y frambuesas frescas', 32, '🍫 PREMIUM'],
+  ['Cupcake Red Velvet x6', 8990, 12990, 4.6, 1234, 'Pack de 6 cupcakes red velvet con frosting de queso crema', 31],
+  ['Postre Chef Signature', 14990, 21990, 4.9, 567, 'Postre del chef con chocolate, frambuesas y decoración floral', 32, '👨‍🍳 CHEF'],
+  ['Cheesecake Frutilla', 9990, 14490, 4.7, 2109, 'Cheesecake cremoso con base de galleta y frutillas frescas', 31],
+  ['Latte Art Especial', 3990, 5490, 4.5, 3456, 'Café latte con arte de barista y espuma de leche premium', 27],
+  ['Cappuccino Doble', 4490, 5990, 4.6, 2876, 'Cappuccino doble shot con leche cremosa y canela', 25],
+  ['Waffles con Helado', 7990, 11490, 4.8, 1987, 'Waffles belgas con helado artesanal, frutas y chocolate', 30, '🧇 DULCE'],
+  ['Panna Cotta Frutos Rojos', 6990, 9990, 4.7, 876, 'Panna cotta italiana con coulis de frutos rojos y menta', 30],
+  ['Pizza Vegetariana Supreme', 10990, 15990, 4.5, 1543, 'Pizza con champiñones, pimentón, aceitunas y queso mozzarella', 31],
+  ['Pizza Margherita Clásica', 9990, 13990, 4.8, 4567, 'Pizza margherita con tomate San Marzano, mozzarella y albahaca', 29, '🇮🇹 ITALIANO'],
+  ['Empanadas de Pino x12', 9990, 13990, 4.8, 6543, 'Docena de empanadas de pino horneadas estilo casero', 29, '🇨🇱 CHILENO'],
+  ['Cazuela de Vacuno', 8990, 12490, 4.7, 3210, 'Cazuela tradicional con carne, choclo, papa y zapallo', 28],
+  ['Pastel de Choclo', 7990, 10990, 4.6, 2876, 'Pastel de choclo casero con pino, huevo duro y aceitunas', 27],
+  ['Sopaipillas Pasadas x10', 4990, 6990, 4.5, 4321, 'Sopaipillas pasadas en chancaca con canela y naranja', 29],
+  ['Ceviche Peruano', 12990, 17990, 4.8, 1987, 'Ceviche de pescado fresco con limón, cebolla morada y ají', 28, '🇵🇪 PERUANO'],
+  ['Pad Thai Premium', 10990, 15490, 4.7, 1234, 'Pad thai con camarones, maní, brotes de soja y salsa tamarindo', 29],
+  ['Poké Bowl Salmón', 11990, 16490, 4.8, 2109, 'Poké bowl con salmón fresco, edamame, palta y salsa ponzu', 27, '🥗 HEALTHY'],
+  ['Boba Tea Taro Grande', 4990, 6990, 4.6, 5432, 'Bubble tea sabor taro con perlas de tapioca y leche', 29],
+  ['Churros con Chocolate', 5990, 8490, 4.7, 3210, 'Churros españoles recién hechos con chocolate caliente espeso', 29, '🇪🇸 ESPAÑOL'],
+];
+
+// ===================== TECH (28) =====================
+const techItems: Array<[string, number, number, number, number, string, number, string?]> = [
+  ['iPhone 16 Pro Max', 1299990, 1499990, 4.9, 8923, 'El smartphone más avanzado con cámara de 48MP y chip A18 Pro', 13, '🚀 NUEVO'],
+  ['AirPods Pro Max', 249990, 349990, 4.8, 4521, 'Auriculares premium con cancelación de ruido y audio espacial', 29, '🎵 AUDIO'],
+  ['MacBook Pro M4 16"', 1899990, 2199990, 4.9, 3287, 'Laptop profesional con chip M4, 16GB RAM y pantalla Liquid Retina', 14, '💻 PRO'],
+  ['Apple Watch Ultra 3', 399990, 499990, 4.7, 2109, 'Reloj inteligente con GPS, ECG y resistencia al agua 100m', 20, '⌚ SMART'],
+  ['iPad Pro 13" M4', 799990, 999990, 4.8, 1876, 'Tablet con pantalla OLED 13" y Apple Pencil Pro incluido', 20],
+  ['AirPods 4 Wireless', 89990, 129990, 4.7, 6543, 'Audífonos inalámbricos con estuche de carga MagSafe', 31],
+  ['Sony WH-1000XM6', 299990, 399990, 4.8, 3210, 'Audífonos over-ear con cancelación de ruido líder en la industria', 25, '🎧 HI-FI'],
+  ['Bang & Olufsen Speaker', 449990, 599990, 4.9, 876, 'Parlante premium con sonido 360° y diseño escandinavo', 25, '💎 LUXURY'],
+  ['Audífonos Studio Pro', 199990, 279990, 4.7, 2345, 'Audífonos de estudio con driver de 50mm y sonido Hi-Res', 29],
+  ['Samsung Galaxy S25 Ultra', 1199990, 1399990, 4.8, 5432, 'Smartphone con S Pen, cámara de 200MP y pantalla AMOLED 6.8"', 14, '🚀 NUEVO'],
+  ['Galaxy Watch 7 Pro', 349990, 449990, 4.6, 1987, 'Smartwatch con sensor BioActive, GPS dual y batería 80hrs', 22],
+  ['Garmin Fenix 8 Solar', 599990, 799990, 4.9, 1234, 'Reloj deportivo con carga solar, mapas y monitoreo avanzado', 25, '⌚ PREMIUM'],
+  ['MacBook Air M3 15"', 1299990, 1499990, 4.8, 4321, 'El laptop más delgado del mundo con chip M3', 13],
+  ['iPhone 16 Standard', 899990, 1099990, 4.7, 7654, 'iPhone 16 con chip A18, cámara de 48MP y Dynamic Island', 18],
+  ['Samsung Galaxy Buds 3 Pro', 149990, 199990, 4.6, 3456, 'Earbuds con ANC inteligente, audio Hi-Fi y resistencia IPX7', 25],
+  ['Google Pixel 9 Pro', 999990, 1199990, 4.7, 2109, 'Smartphone con IA avanzada, cámara Tensor y 7 años de updates', 17],
+  ['iPad Mini 7', 499990, 649990, 4.6, 1876, 'La tablet más portátil con chip A17 Pro y pantalla 8.3"', 23],
+  ['Bose QC Ultra Earbuds', 199990, 269990, 4.7, 2345, 'Earbuds con la mejor cancelación de ruido y audio inmersivo', 26, '🔇 ANC'],
+  ['HomePod Mini 2', 79990, 109990, 4.5, 3210, 'Parlante inteligente con Siri, sonido 360° y chip S8', 27],
+  ['Apple TV 4K 128GB', 149990, 199990, 4.6, 1543, 'Streaming en 4K HDR con chip A15, Dolby Atmos y Wi-Fi 6E', 25],
+  ['DJI Mini 4 Pro Drone', 699990, 899990, 4.8, 987, 'Drone 4K con sensor 1/1.3", detección obstáculos y 34min vuelo', 22, '🚁 DRONE'],
+  ['GoPro Hero 13 Black', 349990, 449990, 4.7, 2876, 'Cámara de acción 5.3K con estabilización HyperSmooth 7.0', 22],
+  ['Kindle Paperwhite 2025', 119990, 159990, 4.8, 5432, 'E-reader con pantalla 7", resistente al agua y luz cálida', 25],
+  ['Nintendo Switch 2', 399990, 499990, 4.9, 8765, 'La nueva consola híbrida con pantalla LCD 8" y dock 4K', 20, '🎮 HOT'],
+  ['Meta Quest 4', 499990, 649990, 4.7, 2109, 'Visor de realidad mixta con resolución 4K y seguimiento ocular', 23, '🥽 VR'],
+  ['Cargador MagSafe Duo', 49990, 69990, 4.5, 4321, 'Cargador inalámbrico dual para iPhone y Apple Watch', 29],
+  ['Powerbank 20000mAh Solar', 29990, 44990, 4.4, 3456, 'Batería portátil solar con carga rápida 65W y 3 puertos', 33],
+  ['Router WiFi 7 Mesh', 149990, 199990, 4.6, 1234, 'Router mesh WiFi 7 con cobertura 300m² y 10Gbps', 25, '📡 WIFI'],
+];
+
+// ===================== FASHION (28) =====================
+const fashionItems: Array<[string, number, number, number, number, string, number, string?]> = [
+  ['Sneakers Air Max Edition', 89990, 129990, 4.8, 3456, 'Zapatillas deportivas con diseño exclusivo y máxima comodidad', 31, '👟 TRENDY'],
+  ['Hoodie Streetwear Premium', 34990, 49990, 4.7, 2198, 'Poleron oversize estilo urbano, algodón premium 400gsm', 30, '🔥 HOT'],
+  ['Denim Jacket Vintage', 49990, 69990, 4.6, 1543, 'Chaqueta de mezclilla con acabado vintage y fit perfecto', 29],
+  ['Sneakers Silver Metallic', 79990, 109990, 4.9, 876, 'Edición limitada con acabado metálico y suela reforzada', 27, '✨ EXCLUSIVE'],
+  ['Red Bomber Jacket', 59990, 84990, 4.7, 1234, 'Bomber jacket rojo con diseño moderno y forro térmico', 29, '❤️ STYLE'],
+  ['Sneakers Retro Red', 69990, 99990, 4.6, 2345, 'Zapatillas retro rojas con suela ergonómica y diseño clásico', 30],
+  ['Lentes de Sol Designer', 39990, 59990, 4.8, 1876, 'Lentes de sol con marco metálico y protección UV400 premium', 33, '🕶️ DESIGNER'],
+  ['Lentes Urban Style', 29990, 44990, 4.5, 3210, 'Lentes de sol estilo urbano con cristales polarizados', 33],
+  ['Mochila Galaxy Pattern', 44990, 64990, 4.7, 987, 'Mochila con patrón galáctico, compartimiento laptop y USB', 31],
+  ['Polera Oversize Graphic', 19990, 29990, 4.5, 4321, 'Polera oversize con estampado gráfico y algodón orgánico', 33],
+  ['Jeans Slim Fit Negro', 29990, 44990, 4.6, 5432, 'Jeans slim fit negro con elastano para máxima comodidad', 33],
+  ['Zapatillas Running Ultra', 99990, 139990, 4.8, 2109, 'Zapatillas de running con amortiguación Boost y mesh transpirable', 29, '🏃 SPORT'],
+  ['Chaqueta Puffer Negra', 69990, 99990, 4.7, 1543, 'Chaqueta puffer acolchada con relleno térmico y capucha', 30],
+  ['Gorra Snapback Premium', 14990, 22990, 4.4, 6543, 'Gorra snapback con bordado 3D y cierre ajustable', 35],
+  ['Cinturón Cuero Italiano', 24990, 39990, 4.6, 1234, 'Cinturón de cuero genuino italiano con hebilla metálica', 37],
+  ['Bufanda Cashmere', 29990, 49990, 4.8, 876, 'Bufanda de cashmere puro con acabado suave y cálido', 40, '🧣 LUXURY'],
+  ['Poleron Zip-Up Tech', 39990, 54990, 4.5, 2345, 'Poleron con cierre completo, tela técnica repelente al agua', 27],
+  ['Shorts Cargo Tactical', 22990, 32990, 4.4, 1987, 'Shorts cargo con bolsillos múltiples y tela ripstop resistente', 30],
+  ['Calcetines Pack x6 Premium', 9990, 14990, 4.3, 7654, 'Pack de 6 pares de calcetines de algodón peinado con diseños', 33],
+  ['Zapatillas Skate Classic', 54990, 74990, 4.7, 3456, 'Zapatillas de skate con suela vulcanizada y lona resistente', 27],
+  ['Parka Impermeable Pro', 89990, 129990, 4.8, 1234, 'Parka impermeable con costuras selladas y forro polar desmontable', 31, '🌧️ WATERPROOF'],
+  ['Camisa Lino Verano', 24990, 34990, 4.5, 2876, 'Camisa de lino italiano con corte relaxed para el verano', 29],
+  ['Billetera Cuero RFID', 19990, 29990, 4.6, 4321, 'Billetera de cuero con protección RFID y múltiples compartimientos', 33],
+  ['Reloj Minimalista Mesh', 49990, 69990, 4.7, 1987, 'Reloj minimalista con correa mesh de acero y cristal zafiro', 29],
+  ['Mochila Roll-Top Urban', 39990, 54990, 4.6, 1543, 'Mochila roll-top impermeable con compartimiento laptop 15.6"', 27],
+  ['Botas Chelsea Cuero', 79990, 109990, 4.8, 876, 'Botas Chelsea de cuero genuino con suela de goma antideslizante', 27, '👢 CLASSIC'],
+  ['Joggers Tech Fleece', 34990, 49990, 4.5, 5432, 'Joggers tech fleece con bolsillos zip y puños elásticos', 30],
+  ['Camiseta Dry-Fit Sport', 14990, 22990, 4.4, 8765, 'Camiseta deportiva Dry-Fit con tecnología anti-transpiración', 35],
+];
+
+// ===================== BEAUTY (26) =====================
+const beautyItems: Array<[string, number, number, number, number, string, number, string?]> = [
+  ['Kit Makeup Pro Deluxe', 49990, 79990, 4.9, 5432, 'Set completo de maquillaje profesional con 48 tonos', 38, '💎 LUXURY'],
+  ['Paleta Sombras Galaxy', 29990, 44990, 4.8, 3210, 'Paleta con 24 tonos brillantes y mate inspirados en galaxias', 33, '🌟 VIRAL'],
+  ['Set Skincare Coreano 10 Pasos', 39990, 59990, 4.9, 7654, 'Rutina completa de 10 pasos con productos coreanos premium', 33, '🇰🇷 K-BEAUTY'],
+  ['Sérum Vitamina C 30ml', 19990, 29990, 4.8, 6543, 'Sérum iluminador con vitamina C pura al 20% y ácido hialurónico', 33],
+  ['Sérum Retinol Anti-Age', 24990, 39990, 4.7, 4321, 'Sérum con retinol encapsulado para reducir arrugas y manchas', 37, '✨ ANTI-AGE'],
+  ['Set Sérum Triple Acción', 34990, 52990, 4.8, 2345, 'Pack de 3 sérums: vitamina C, niacinamida y ácido hialurónico', 34],
+  ['Perfume Colección Luxury', 89990, 129990, 4.9, 1987, 'Set de 3 perfumes de autor con notas amaderadas y florales', 31, '💎 LUXURY'],
+  ['Eau de Parfum Blue Sky', 49990, 74990, 4.7, 3456, 'Perfume fresco con notas de bergamota, jazmin y almizcle', 33],
+  ['Perfume Noir Collection', 69990, 99990, 4.8, 1543, 'Colección de perfumes intensos con pachulí, oud y vainilla', 30, '🖤 NOIR'],
+  ['Esmalte Gel Kit Completo', 24990, 37990, 4.6, 4321, 'Kit de esmalte gel con lámpara UV, 12 colores y accesorios', 34],
+  ['Set Uñas Acrílicas Pro', 29990, 44990, 4.7, 2876, 'Kit profesional de uñas acrílicas con polvo, líquido y moldes', 33],
+  ['Sérum Coreano Heartleaf', 15990, 22990, 4.8, 8765, 'Sérum calmante con extracto de houttuynia para piel sensible', 30, '🇰🇷 K-BEAUTY'],
+  ['Perfume Dubai Night', 59990, 89990, 4.7, 1234, 'Fragancia oriental con oud, rosa damascena y azafrán', 33],
+  ['Crema Hidratante 72hrs', 17990, 26990, 4.6, 5432, 'Crema hidratante con ácido hialurónico de 3 pesos moleculares', 33],
+  ['Mascarilla Sheet Pack x10', 12990, 19990, 4.5, 7654, 'Pack de 10 mascarillas coreanas con ingredientes naturales', 35],
+  ['Labial Mate Velvet x6', 14990, 22990, 4.7, 6543, 'Set de 6 labiales mate de larga duración en tonos nude y bold', 35, '💋 BEST'],
+  ['Base de Maquillaje HD', 19990, 29990, 4.6, 3456, 'Base líquida HD con cobertura media-alta y acabado natural', 33],
+  ['Brochas Makeup Set x15', 22990, 34990, 4.8, 4321, 'Set de 15 brochas profesionales con pelo sintético suave', 34, '🖌️ PRO'],
+  ['Tónico Facial AHA/BHA', 13990, 19990, 4.7, 5432, 'Tónico exfoliante suave con AHA, BHA y centella asiática', 30],
+  ['Protector Solar SPF50+', 11990, 17990, 4.8, 9876, 'Protector solar mineral con acabado invisible y no comedogénico', 33, '☀️ ESENCIAL'],
+  ['Aceite de Argán Puro', 14990, 21990, 4.6, 2876, 'Aceite de argán marroquí 100% puro para cabello y piel', 32],
+  ['Rizador Automático Pro', 39990, 59990, 4.5, 1987, 'Rizador automático con cerámica turmalina y 3 temperaturas', 33],
+  ['Plancha de Pelo Titanio', 34990, 49990, 4.7, 3210, 'Plancha profesional con placas de titanio y tecnología iónica', 30],
+  ['Paleta Contorno & Highlight', 19990, 29990, 4.6, 4321, 'Paleta 6 tonos para contorno y highlight con pigmentos suaves', 33],
+  ['Máscara de Pestañas 4D', 9990, 14990, 4.5, 8765, 'Máscara de pestañas con fibras 4D para volumen extremo', 33],
+  ['Delineador Waterproof Gel', 7990, 11990, 4.4, 5432, 'Delineador en gel waterproof de larga duración 24hrs', 33],
+];
+
+// ===================== HOME (26) =====================
+const homeItems: Array<[string, number, number, number, number, string, number, string?]> = [
+  ['Canasta Frutas Orgánicas', 12990, 18990, 4.7, 2345, 'Selección premium de frutas y verduras orgánicas frescas', 32, '🌿 ORGÁNICO'],
+  ['Super Pack Mercado', 24990, 35990, 4.6, 1876, 'Pack completo con lácteos, frutas, verduras y esenciales', 31, '📦 PACK'],
+  ['Fresh Market Box Semanal', 19990, 27990, 4.5, 987, 'Caja semanal con productos frescos directo del campo', 29],
+  ['Vela Aromática Lavanda', 9990, 14990, 4.8, 3456, 'Vela aromática de lavanda con cera de soja y mecha de algodón', 33, '🕯️ RELAX'],
+  ['Set Velas Decorativas x3', 14990, 22990, 4.7, 2109, 'Set de 3 velas artesanales con aromas de vainilla, canela y rosa', 35],
+  ['Suculenta Mini Macetero', 5990, 8990, 4.6, 4321, 'Suculenta decorativa en macetero metálico minimalista', 33],
+  ['Planta Monstera Interior', 19990, 29990, 4.8, 1876, 'Monstera deliciosa de 50cm en macetero de cerámica blanca', 33, '🌿 TRENDY'],
+  ['Jardinera Flores Coloridas', 12990, 18990, 4.5, 987, 'Jardinera con flores de temporada para ventana o balcón', 32],
+  ['Set Decoración Minimal', 24990, 34990, 4.7, 1543, 'Set decorativo con cuadro, suculentas e incienso japonés', 29],
+  ['Vela Gran Formato 500g', 17990, 26990, 4.6, 2345, 'Vela artesanal gran formato con aroma a madera de cedro', 33],
+  ['Cojines Decorativos x4', 22990, 34990, 4.5, 3210, 'Set de 4 cojines decorativos con diseños boho y relleno incluido', 34],
+  ['Manta Sherpa Premium', 19990, 29990, 4.8, 5432, 'Manta ultra suave de sherpa doble cara tamaño queen', 33, '🛋️ COZY'],
+  ['Difusor de Aromas USB', 14990, 22990, 4.6, 4321, 'Difusor ultrasónico con LED multicolor y aceite esencial incluido', 35],
+  ['Organizador Escritorio Bambú', 12990, 18990, 4.5, 1987, 'Organizador de escritorio en bambú natural con 6 compartimientos', 32],
+  ['Lámpara LED Smart WiFi', 24990, 37990, 4.7, 2876, 'Lámpara inteligente RGB con control WiFi y compatible Alexa/Google', 34, '💡 SMART'],
+  ['Juego de Sábanas 1000TC', 29990, 44990, 4.8, 6543, 'Sábanas de algodón egipcio 1000 hilos con funda de almohada', 33],
+  ['Taza Cerámica Artesanal', 7990, 11990, 4.4, 8765, 'Taza artesanal de cerámica con glaseado japonés wabi-sabi', 33],
+  ['Set Cocina Acero Inox x5', 34990, 52990, 4.7, 2109, 'Set de 5 ollas y sartenes de acero inoxidable triple fondo', 34, '🍳 CHEF'],
+  ['Espejo LED Baño Smart', 39990, 59990, 4.6, 1234, 'Espejo de baño con luz LED, anti-empañante y reloj integrado', 33],
+  ['Canasta Picnic Premium', 29990, 44990, 4.8, 876, 'Canasta de mimbre para picnic con vajilla para 4 personas', 33, '🧺 PREMIUM'],
+  ['Almohada Viscoelástica', 19990, 29990, 4.7, 7654, 'Almohada memory foam con gel refrescante y funda lavable', 33],
+  ['Cortinas Blackout x2', 24990, 37990, 4.6, 3456, 'Par de cortinas blackout térmicas con ojales metálicos', 34],
+  ['Robot Aspirador Smart', 149990, 219990, 4.8, 4321, 'Robot aspirador con mapeo láser, app y vaciado automático', 32, '🤖 SMART'],
+  ['Cafetera Espresso Manual', 69990, 99990, 4.7, 2876, 'Cafetera espresso manual de acero con portafiltro 58mm', 30],
+  ['Licuadora Power 1200W', 39990, 57990, 4.5, 5432, 'Licuadora de alta potencia con vaso de tritán y 6 cuchillas', 31],
+  ['Freidora de Aire 5.5L', 49990, 74990, 4.8, 9876, 'Air fryer digital con 8 programas preestablecidos y canasta XL', 33, '🔥 BEST SELLER'],
+];
+
+// ===================== GAMING (22) =====================
+const gamingItems: Array<[string, number, number, number, number, string, number, string?]> = [
+  ['Control Xbox Elite Series 3', 159990, 219990, 4.8, 3456, 'Control premium con gatillos ajustables y thumbsticks intercambiables', 27, '🎮 ELITE'],
+  ['Control Xbox Wireless', 59990, 79990, 4.7, 6543, 'Control inalámbrico compatible con Xbox, PC y móvil', 25],
+  ['DualSense PS5 Edición Especial', 69990, 89990, 4.8, 4321, 'Control DualSense con retroalimentación háptica y gatillos adaptativos', 22, '🎮 PS5'],
+  ['Teclado Mecánico RGB', 79990, 109990, 4.7, 2876, 'Teclado mecánico con switches Cherry MX Red y RGB personalizable', 27],
+  ['Teclado 65% Hot-Swap', 59990, 84990, 4.8, 1987, 'Teclado compacto 65% con switches hot-swappable y foam mod', 29, '⌨️ CUSTOM'],
+  ['Setup Gaming Completo', 899990, 1199990, 4.9, 876, 'Setup completo con monitor vertical, laptop gaming y RGB ambiental', 25, '🏆 ULTIMATE'],
+  ['Silla Gaming Ergonómica', 199990, 299990, 4.6, 5432, 'Silla gaming con soporte lumbar, reposabrazos 4D y reclinable 180°', 33],
+  ['Mouse Gaming Ultra Light', 49990, 69990, 4.7, 3210, 'Mouse ultra liviano 47g con sensor 26K DPI y switches ópticos', 29],
+  ['Headset Gaming 7.1', 69990, 99990, 4.6, 4321, 'Audífonos gaming con sonido surround 7.1 y micrófono retráctil', 30],
+  ['Monitor Gaming 27" 240Hz', 349990, 449990, 4.8, 1876, 'Monitor IPS 27" QHD 240Hz con 1ms y FreeSync Premium Pro', 22, '🖥️ 240Hz'],
+  ['Monitor Ultrawide 34" 165Hz', 449990, 599990, 4.9, 1234, 'Monitor curvo ultrawide UWQHD 34" 165Hz con HDR600', 25, '🖥️ ULTRAWIDE'],
+  ['Mousepad XXL RGB', 24990, 34990, 4.5, 7654, 'Mousepad XXL 90x40cm con borde RGB y base antideslizante', 29],
+  ['Webcam 4K Streaming', 89990, 129990, 4.7, 2109, 'Webcam 4K con autofoco, HDR y micrófono dual integrado', 31],
+  ['Capturadora de Video 4K', 149990, 199990, 4.8, 1543, 'Capturadora de video 4K60 con passthrough y latencia ultra baja', 25, '📹 STREAM'],
+  ['Micrófono USB Podcasting', 79990, 109990, 4.7, 3456, 'Micrófono condensador USB con patrón cardioide y brazo incluido', 27],
+  ['Stream Deck Mini 6 Keys', 59990, 84990, 4.6, 2876, 'Controlador de streaming con 6 teclas LCD personalizables', 29],
+  ['PS5 Slim Digital', 399990, 499990, 4.9, 8765, 'PlayStation 5 Slim edición digital con SSD 1TB y DualSense', 20, '🎮 PS5'],
+  ['Xbox Series X', 449990, 549990, 4.8, 7654, 'Xbox Series X con SSD 1TB, 4K 120fps y Game Pass incluido', 18, '🎮 XBOX'],
+  ['Nintendo Switch OLED', 299990, 379990, 4.7, 9876, 'Nintendo Switch modelo OLED con pantalla 7" y dock mejorado', 21],
+  ['SSD NVMe 2TB PCIe 5.0', 129990, 179990, 4.8, 2345, 'SSD ultrarrápido con lectura 12.000MB/s y heatsink incluido', 28],
+  ['GPU RTX 5080 16GB', 899990, 1199990, 4.9, 1234, 'Tarjeta gráfica RTX 5080 con 16GB GDDR7 y DLSS 4', 25, '🔥 NUEVA'],
+  ['RAM DDR5 32GB 6400MHz', 89990, 129990, 4.7, 3456, 'Kit de memoria RAM DDR5 2x16GB 6400MHz CL32 con RGB', 31],
+];
+
+// ===================== SPORTS (26) =====================
+const sportsItems: Array<[string, number, number, number, number, string, number, string?]> = [
+  ['Mancuernas Ajustables 40kg', 79990, 119990, 4.8, 4321, 'Par de mancuernas ajustables de 2.5kg a 20kg cada una', 33, '💪 GYM'],
+  ['Set Kettlebells x3', 49990, 74990, 4.7, 2109, 'Set de kettlebells 4kg, 8kg y 12kg con base incluida', 33],
+  ['Banda Resistencia Set x5', 14990, 22990, 4.6, 6543, 'Set de 5 bandas de resistencia con anclaje de puerta', 35],
+  ['Colchoneta Yoga Pro', 19990, 29990, 4.8, 8765, 'Colchoneta de yoga antideslizante con líneas de alineación', 33, '🧘 YOGA'],
+  ['Rueda Abdominal Pro', 9990, 14990, 4.5, 5432, 'Rueda abdominal con alfombrilla y mango ergonómico antideslizante', 33],
+  ['Bicicleta Mountain Bike 29"', 299990, 429990, 4.7, 1234, 'MTB con cuadro aluminio, frenos hidráulicos y 21 velocidades', 30, '🚵 MTB'],
+  ['Bicicleta Ruta Carbono', 899990, 1199990, 4.9, 876, 'Bicicleta de ruta con cuadro de carbono y grupo Shimano 105', 25, '🚴 RUTA'],
+  ['Bicicleta Urbana Eléctrica', 499990, 699990, 4.8, 2109, 'E-bike urbana con motor 250W, autonomía 60km y pantalla LCD', 29, '⚡ E-BIKE'],
+  ['Guantes Boxeo Pro', 29990, 44990, 4.6, 3456, 'Guantes de boxeo de cuero sintético con relleno de espuma de alta densidad', 33, '🥊 BOXEO'],
+  ['Saco de Boxeo 30kg', 79990, 114990, 4.7, 1987, 'Saco de boxeo relleno de 30kg con cadena y gancho de techo', 30],
+  ['Cuerda Saltar Contador Digital', 7990, 11990, 4.4, 8765, 'Cuerda de saltar con contador digital, calorías y temporizador', 33],
+  ['Balón Fútbol Profesional', 19990, 29990, 4.7, 6543, 'Balón de fútbol FIFA Quality Pro con cámara de aire sellada', 33, '⚽ FÚTBOL'],
+  ['Set Pesas Rusas x3', 39990, 59990, 4.6, 2345, 'Set de kettlebells rusas 8kg, 12kg y 16kg de hierro fundido', 33],
+  ['TRX Suspension Trainer', 34990, 49990, 4.7, 4321, 'Sistema de entrenamiento en suspensión con anclaje de puerta', 30],
+  ['Foam Roller Masaje', 12990, 18990, 4.5, 7654, 'Rodillo de espuma para masaje miofascial con textura profunda', 31],
+  ['Botella Térmica 1L', 9990, 14990, 4.6, 9876, 'Botella térmica de acero inoxidable con aislamiento 24hrs', 33],
+  ['Mochila Deportiva 40L', 24990, 36990, 4.5, 5432, 'Mochila deportiva con compartimiento para zapatos y botella', 32],
+  ['Reloj Deportivo GPS', 49990, 74990, 4.7, 3210, 'Reloj deportivo con GPS, pulsómetro y 50 modos deportivos', 33, '⌚ GPS'],
+  ['Patines en Línea Pro', 59990, 89990, 4.6, 1987, 'Patines en línea con ruedas 80mm ABEC-9 y botín ajustable', 33, '🛼 PATINES'],
+  ['Skateboard Completo', 39990, 59990, 4.7, 3456, 'Skateboard completo con deck de arce 7-capas y trucks de aluminio', 33, '🛹 SKATE'],
+  ['Balón Baloncesto Oficial', 24990, 34990, 4.6, 4321, 'Balón de baloncesto oficial NBA con grip composite', 29, '🏀 NBA'],
+  ['Red Vóley Playa', 19990, 29990, 4.4, 1234, 'Red de vóley playa portátil con postes telescópicos y bolsa', 33],
+  ['Raqueta Tenis Profesional', 79990, 114990, 4.8, 876, 'Raqueta de tenis con cuadro de grafito y cordaje pre-tensado', 30, '🎾 TENIS'],
+  ['Set Golf Principiante', 149990, 219990, 4.6, 654, 'Set de golf completo con driver, hierros, putter y bolsa', 32, '⛳ GOLF'],
+  ['Casco Ciclismo Aero', 34990, 49990, 4.7, 2109, 'Casco de ciclismo aerodinámico con MIPS y ventilación avanzada', 30, '🪖 AERO'],
+];
+
+// ===================== PETS (24) =====================
+const petsItems: Array<[string, number, number, number, number, string, number, string?]> = [
+  ['Cama Perro Ortopédica XL', 39990, 59990, 4.8, 5432, 'Cama ortopédica para perros grandes con espuma viscoelástica', 33, '🐕 PERRO'],
+  ['Comida Premium Perro 15kg', 49990, 74990, 4.7, 8765, 'Alimento premium para perros adultos con proteína de pollo real', 33],
+  ['Juguete Interactivo Gato', 9990, 14990, 4.6, 9876, 'Juguete interactivo para gatos con láser automático y plumas', 33, '🐱 GATO'],
+  ['Rascador Gato Torre 120cm', 29990, 44990, 4.8, 4321, 'Torre rascador para gatos con 4 niveles, hamaca y cueva', 33],
+  ['Arnés Perro Ajustable', 14990, 21990, 4.5, 7654, 'Arnés reflectante ajustable con asa de control y clip doble', 32],
+  ['Correa Retráctil 8m', 7990, 11990, 4.4, 6543, 'Correa retráctil automática de 8 metros con freno de seguridad', 33],
+  ['Transportadora Aérea', 34990, 49990, 4.6, 3210, 'Transportadora para mascotas con ventilación y cojín removible', 30],
+  ['Shampoo Hipoalergénico', 7990, 11990, 4.7, 8765, 'Shampoo hipoalergénico para mascotas con avena y aloe vera', 33],
+  ['Cepillo Deslanador', 5990, 8990, 4.5, 5432, 'Cepillo removedor de pelo suelto con botón de autolimpieza', 33],
+  ['Dispensador Agua Automático', 19990, 29990, 4.6, 4321, 'Bebedero automático con filtro de carbón y capacidad 2.5L', 33],
+  ['Comedero Inteligente WiFi', 49990, 74990, 4.7, 2109, 'Comedero programable con cámara, app y control por voz', 33, '📱 SMART'],
+  ['Pelota Resistente Kong', 4990, 7990, 4.8, 9876, 'Pelota ultra resistente para perros con dispensador de premios', 38, '🐕 KONG'],
+  ['Abrigo Perro Impermeable', 19990, 29990, 4.6, 3456, 'Abrigo impermeable para perros con forro polar y reflectantes', 33],
+  ['Cama Gato Ventana', 14990, 22990, 4.7, 6543, 'Hamaca de ventana para gatos con ventosas de alta resistencia', 35, '🐱 HAMACA'],
+  ['Arena Gato Aglomerante 10kg', 12990, 18990, 4.5, 8765, 'Arena aglomerante premium con control de olor 7 días', 31],
+  ['Snacks Dentales x50', 7990, 11990, 4.6, 5432, 'Pack de 50 snacks dentales para limpieza de dientes y aliento', 33],
+  ['Collar GPS Smart', 29990, 44990, 4.7, 3210, 'Collar con GPS, geocerca y monitoreo de actividad para mascotas', 33, '📍 GPS'],
+  ['Casa Perro Exterior', 79990, 114990, 4.6, 1987, 'Casa para perro de exterior con techo elevado y piso aislado', 30],
+  ['Juguete Mordedor Resistente', 7990, 11990, 4.5, 7654, 'Juguete mordedor de caucho natural para perros grandes', 33],
+  ['Pañales Desechables x30', 14990, 21990, 4.4, 4321, 'Pañales desechables para mascotas con indicador de humedad', 32],
+  ['Túnel Gato Plegable', 9990, 14990, 4.6, 6543, 'Túnel plegable para gatos con 3 salidas y campana integrada', 33],
+  ['Bolsa Transporte Premium', 24990, 36990, 4.7, 2109, 'Bolsa de transporte tipo mochila con ventilación 360°', 32],
+  ['Fuente Agua Cerámica', 29990, 44990, 4.8, 1234, 'Fuente de agua de cerámica con bomba silenciosa y filtro', 33, '💧 FUENTE'],
+  ['Set Grooming Profesional', 19990, 29990, 4.6, 876, 'Kit de grooming con tijeras, cortaúñas, cepillo y peine', 33],
+];
+
+// ===================== TOYS (22) =====================
+const toysItems: Array<[string, number, number, number, number, string, number, string?]> = [
+  ['Set LEGO City Policía', 49990, 74990, 4.8, 4321, 'Set de construcción LEGO City con estación de policía y 7 minifiguras', 33, '🧱 LEGO'],
+  ['LEGO Star Wars X-Wing', 89990, 129990, 4.9, 2109, 'Nave X-Wing de Star Wars con 1949 piezas y Luke Skywalker', 31, '⭐ STAR WARS'],
+  ['Muñeca Interactiva Bebé', 29990, 44990, 4.6, 7654, 'Muñeca bebé interactiva con 50 sonidos, succión y movimientos', 33, '👶 BEBÉ'],
+  ['Auto Control Remoto 4x4', 39990, 59990, 4.7, 5432, 'Auto a control remoto 4x4 con suspensión independiente y 30km/h', 33, '🚙 RC'],
+  ['Drone Mini para Niños', 24990, 36990, 4.5, 9876, 'Drone mini con cámara HD, modo headless y 20min vuelo', 32, '🚁 DRONE'],
+  ['Pista de Carreras Hot Wheels', 34990, 49990, 4.8, 6543, 'Pista de carreras con loop, lanzador y 5 autos incluidos', 30, '🏎️ CARRERAS'],
+  ['Set Dinosaurios x12', 14990, 21990, 4.6, 4321, 'Set de 12 dinosaurios realistas con libro educativo ilustrado', 32, '🦕 DINO'],
+  ['Cocina de Juguete Madera', 39990, 59990, 4.7, 3210, 'Cocina de madera con horno, fregadero y accesorios incluidos', 33, '👩‍🍳 COCINA'],
+  ['Set Médico Doctor', 19990, 29990, 4.5, 8765, 'Set de doctor con 15 accesorios, estetoscopio y maletín', 33, '👨‍⚕️ DOCTOR'],
+  ['Peluche Gigante Unicornio', 29990, 44990, 4.8, 5432, 'Peluche gigante de unicornio de 1 metro con luz LED', 33, '🦄 UNICORNIO'],
+  ['Rompecabezas 3000 Piezas', 24990, 36990, 4.7, 2109, 'Rompecabezas de 3000 piezas con imagen de paisaje europeo', 32, '🧩 PUZZLE'],
+  ['Set Magia Principiante', 14990, 21990, 4.5, 6543, 'Kit de magia con 100 trucos, cartas, monedas y varita', 32, '🎩 MAGIA'],
+  ['Instrumentos Musicales Bebé', 19990, 29990, 4.4, 8765, 'Set de instrumentos musicales para bebés: xilófono, tambor, maracas', 33, '🎵 MÚSICA'],
+  ['Set Construcción Magnética', 34990, 49990, 4.8, 4321, 'Set de construcción magnética con 100 piezas geométricas', 30, '🧲 MAGNÉTICO'],
+  ['Pistola Nerf Elite', 19990, 29990, 4.6, 7654, 'Pistola Nerf con tambor rotativo, 24 dardos y mira telescópica', 33, '🔫 NERF'],
+  ['Set Tren Eléctrico', 49990, 74990, 4.7, 3210, 'Tren eléctrico con vías, estación, puentes y control remoto', 33, '🚂 TREN'],
+  ['Tablero Ajedrez Madera', 24990, 34990, 4.8, 1987, 'Tablero de ajedrez de madera con piezas talladas a mano', 29, '♟️ AJEDREZ'],
+  ['Set Pintura Acrílica x24', 14990, 22990, 4.6, 5432, 'Set de 24 tubos de pintura acrílica con pinceles y lienzo', 35, '🎨 ARTE'],
+  ['Robot Programable STEM', 39990, 59990, 4.7, 2109, 'Robot educativo programable con app, sensores y 200 proyectos', 33, '🤖 STEM'],
+  ['Set Slime DIY x12', 9990, 14990, 4.5, 8765, 'Kit para hacer slime con 12 colores, glitter y accesorios', 33, '🌈 SLIME'],
+  ['Castillo Inflable Gigante', 149990, 219990, 4.8, 876, 'Castillo inflable gigante con tobogán, red de seguridad y soplador', 32, '🏰 CASTILLO'],
+  ['Set Superhéroes Marvel', 34990, 49990, 4.7, 4321, 'Set de 6 figuras de acción Marvel con accesorios intercambiables', 30, '🦸 MARVEL'],
+];
+
+// ===================== BOOKS (22) =====================
+const booksItems: Array<[string, number, number, number, number, string, number, string?]> = [
+  ['Cien Años de Soledad', 14990, 21990, 4.9, 8765, 'Edición especial del clásico de Gabriel García Márquez', 32, '📖 CLÁSICO'],
+  ['El Principito Edición Lujo', 19990, 29990, 4.8, 6543, 'Edición de lujo con ilustraciones originales y tapa dura', 33, '✨ LUJO'],
+  ['Set Harry Potter Completo', 89990, 129990, 4.9, 9876, 'Colección completa de 7 libros en edición especial aniversario', 31, '⚡ HARRY POTTER'],
+  ['Sapiens: De Animales a Dioses', 16990, 24990, 4.7, 5432, 'Best seller de Yuval Noah Harari sobre la historia de la humanidad', 32],
+  ['Atomic Habits Español', 14990, 21990, 4.8, 8765, 'Libro de James Clear sobre cómo construir hábitos positivos', 32, '🧠 BEST SELLER'],
+  ['Cómo Ganar Amigos', 12990, 18990, 4.7, 4321, 'Clásico de Dale Carnegie sobre relaciones interpersonales', 32],
+  ['Set Agatha Christie x10', 49990, 74990, 4.8, 2109, 'Colección de 10 novelas de misterio de la reina del crimen', 33, '🔍 MISTERIO'],
+  ['El Señor de los Anillos', 39990, 59990, 4.9, 6543, 'Trilogía completa en edición ilustrada con mapas de la Tierra Media', 33, '💍 TOLKIEN'],
+  ['Diario de Ana Frank', 9990, 14990, 4.8, 9876, 'Edición conmemorativa con fotos inéditas y prólogo especial', 33],
+  ['Set Manga Attack on Titan', 69990, 99990, 4.9, 4321, 'Colección completa del manga Attack on Titan en español', 30, '🇯🇵 MANGA'],
+  ['Cocina Peruana Auténtica', 24990, 36990, 4.7, 3210, 'Libro de cocina peruana con 200 recetas y fotos profesionales', 32, '👨‍🍳 COCINA'],
+  ['Set Marvel Comics Clásicos', 59990, 89990, 4.8, 1987, 'Colección de 5 comics clásicos de Marvel en edición especial', 33, '🦸 MARVEL'],
+  ['Atlas del Mundo Ilustrado', 34990, 49990, 4.6, 5432, 'Atlas mundial con mapas detallados, datos curiosos y fotos satelitales', 30],
+  ['Set Stephen King Terror', 79990, 114990, 4.8, 2109, 'Colección de 5 novelas de terror de Stephen King', 30, '🎃 TERROR'],
+  ['Libro de Colorear Adultos', 9990, 14990, 4.5, 8765, 'Libro de mandalas y diseños para colorear con lápices incluidos', 33, '🎨 ARTE'],
+  ['Set Enciclopedia Visual', 89990, 129990, 4.7, 1234, 'Enciclopedia visual completa en 10 tomos con miles de imágenes', 31, '📚 ENCICLOPEDIA'],
+  ['Poesía Completa Neruda', 19990, 29990, 4.8, 6543, 'Edición completa de la poesía de Pablo Neruda con prólogo especial', 33, '🇨🇱 NERUDA'],
+  ['Guía de Inversiones 2025', 24990, 34990, 4.6, 4321, 'Guía completa de inversiones para principiantes y avanzados', 29, '💰 FINANZAS'],
+  ['Set Caligrafía y Lettering', 19990, 29990, 4.7, 2109, 'Kit de caligrafía con 3 plumines, 12 tintas y libro guía', 33, '✒️ LETTERING'],
+  ['Atlas de Anatomía Humana', 44990, 64990, 4.8, 876, 'Atlas de anatomía con ilustraciones médicas detalladas en 3D', 31, '🩺 MEDICINA'],
+  ['Set Cuentos Infantiles x20', 29990, 44990, 4.7, 5432, 'Colección de 20 cuentos infantiles clásicos con ilustraciones', 33, '👶 INFANTIL'],
+  ['Planner 2025 Premium', 14990, 21990, 4.6, 9876, 'Agenda planner 2025 con stickers, separadores y sistema de metas', 32, '📅 PLANNER'],
+];
+
+// ===================== AUTO (22) =====================
+const autoItems: Array<[string, number, number, number, number, string, number, string?]> = [
+  ['Cargador Rápido Auto 120W', 19990, 29990, 4.7, 8765, 'Cargador rápido para auto con 3 puertos USB-C y USB-A', 33, '⚡ CARGA'],
+  ['Soporte Celular Magnético', 9990, 14990, 4.6, 6543, 'Soporte magnético para celular con rotación 360° y adhesivo 3M', 33],
+  ['Dash Cam 4K Frontal+Trasera', 79990, 114990, 4.8, 4321, 'Cámara de tablero 4K con cámara trasera, GPS y visión nocturna', 30, '📹 DASH CAM'],
+  ['Aspiradora Auto Inalámbrica', 29990, 44990, 4.5, 9876, 'Aspiradora portátil para auto con succión 8000Pa y accesorios', 33],
+  ['Ambientador Auto Premium', 4990, 7990, 4.4, 5432, 'Ambientador de auto con diseño minimalista y 6 recargas', 38],
+  ['Organizador Maletero Plegable', 14990, 21990, 4.6, 3210, 'Organizador plegable para maletero con compartimientos ajustables', 32],
+  ['Fundas Asiento Cuero PU', 49990, 74990, 4.7, 2109, 'Fundas universales para asientos de auto en cuero sintético', 33, '🪑 ASIENTOS'],
+  ['Alfombras Auto 3D Custom', 29990, 44990, 4.8, 8765, 'Alfombras 3D personalizadas para tu modelo de auto', 33],
+  ['Kit Herramientas Emergencia', 24990, 36990, 4.6, 4321, 'Kit de emergencia con cables de arranque, linterna y triángulos', 32, '🆘 EMERGENCIA'],
+  ['Compresor Aire Portátil', 19990, 29990, 4.7, 6543, 'Compresor de aire digital con pantalla LCD y apagado automático', 33],
+  ['Cámara Retroceso Inalámbrica', 34990, 49990, 4.5, 2109, 'Cámara de retroceso inalámbrica con guías de estacionamiento', 30, '📷 RETROCESO'],
+  ['Cargador Inalámbrico Auto', 24990, 34990, 4.6, 8765, 'Cargador inalámbrico para auto con sujeción automática', 29],
+  ['Limpiaparabrisas Premium x2', 14990, 21990, 4.5, 5432, 'Par de limpiaparabrisas de silicona con adaptadores universales', 32],
+  ['Cera Carnauba Premium', 12990, 18990, 4.7, 3210, 'Cera de carnauba brasileña para brillo extremo y protección UV', 31, '✨ BRILLO'],
+  ['Kit Limpieza Interior Auto', 19990, 29990, 4.6, 1987, 'Kit completo de limpieza interior con aspiradora, cepillos y productos', 33],
+  ['GPS Navegador 7" Offline', 49990, 74990, 4.5, 876, 'GPS de 7" con mapas offline de Sudamérica y alertas de tráfico', 33, '📍 GPS'],
+  ['Barra LED Off-Road 52"', 79990, 114990, 4.7, 1234, 'Barra de luces LED 52" para off-road con 30.000 lúmenes', 30, '💡 LED'],
+  ['Arrancador de Batería 2000A', 59990, 89990, 4.8, 6543, 'Arrancador portátil 2000A con linterna, powerbank y compresor', 33, '🔋 ARRANQUE'],
+  ['Cobertor Auto Impermeable', 29990, 44990, 4.5, 4321, 'Cobertor universal impermeable con protección UV y candado', 33],
+  ['Set Llaves de Impacto', 39990, 59990, 4.6, 2109, 'Set de llaves de impacto con 40 piezas y estuche organizador', 33, '🔧 HERRAMIENTAS'],
+  ['Pintura Spray Auto x6', 19990, 29990, 4.4, 8765, 'Set de 6 aerosoles de pintura para auto con acabado profesional', 33],
+  ['Escáner OBD2 Bluetooth', 14990, 21990, 4.7, 5432, 'Escáner diagnóstico OBD2 con app Bluetooth para iOS y Android', 32, '🔧 DIAGNÓSTICO'],
+];
+
+// ===================== WELLNESS (22) =====================
+const wellnessItems: Array<[string, number, number, number, number, string, number, string?]> = [
+  ['Colchoneta Yoga Premium', 24990, 36990, 4.8, 8765, 'Colchoneta de yoga de caucho natural con líneas de alineación láser', 32, '🧘 YOGA'],
+  ['Set Meditación Completo', 39990, 59990, 4.7, 4321, 'Set de meditación con cojín zafu, campana tibetana y incienso', 33, '🔔 ZEN'],
+  ['Masajeador Cervical Shiatsu', 49990, 74990, 4.8, 6543, 'Masajeador cervical con calor infrarrojo y 8 nodos giratorios', 33, '💆 MASAJE'],
+  ['Set Aceites Esenciales x12', 19990, 29990, 4.7, 9876, 'Set de 12 aceites esenciales puros con difusor de bambú', 33, '🌿 AROMATERAPIA'],
+  ['Bola Masaje Fascial', 7990, 11990, 4.5, 5432, 'Bola de masaje de silicona para liberación miofascial profunda', 33],
+  ['Manta Ponderada 7kg', 49990, 74990, 4.8, 2109, 'Manta ponderada terapéutica de 7kg para ansiedad e insomnio', 33, '🛏️ TERAPIA'],
+  ['Rodillo Jade Facial', 12990, 18990, 4.6, 8765, 'Rodillo de jade para masaje facial con efecto lifting natural', 31],
+  ['Set Pilates Completo', 34990, 49990, 4.7, 4321, 'Set de pilates con bandas, anillo, bola y guía de ejercicios', 30, '🤸 PILATES'],
+  ['Almohada Ortopédica Cervical', 29990, 44990, 4.8, 6543, 'Almohada ortopédica con memory foam y funda hipoalergénica', 33, '🛌 ORTOPÉDICA'],
+  ['Sauna Portátil Infrarrojo', 149990, 219990, 4.6, 1987, 'Sauna portátil de infrarrojos con silla, mando y control de temperatura', 32, '♨️ SAUNA'],
+  ['Masajeador de Pies Eléctrico', 39990, 59990, 4.7, 8765, 'Masajeador de pies con shiatsu, calor y compresión de aire', 33, '🦶 PIES'],
+  ['Set Té Orgánico Premium', 19990, 29990, 4.8, 5432, 'Caja de té orgánico con 24 variedades de todo el mundo', 33, '🍵 TÉ'],
+  ['Lámpara de Sal del Himalaya', 14990, 21990, 4.5, 3210, 'Lámpara de sal natural del Himalaya con base de madera', 32, '🧂 HIMALAYA'],
+  ['Set Baño Spa en Casa', 29990, 44990, 4.7, 2109, 'Set spa con sales de baño, velas, mascarilla y toalla de bambú', 33, '🛁 SPA'],
+  ['Masajeador Pistola Muscular', 49990, 74990, 4.8, 876, 'Pistola de masaje muscular con 6 cabezales y 30 velocidades', 33, '🔫 MASAJE'],
+  ['Colchón Topper Memory Foam', 69990, 99990, 4.7, 4321, 'Topper de colchón viscoelástico de 5cm con funda lavable', 30, '🛏️ TOPPER'],
+  ['Set Jardinería Zen', 24990, 36990, 4.6, 6543, 'Mini jardín zen con arena, piedras, rastrillo y bonsai artificial', 32, '🪨 ZEN'],
+  ['Cuenco Tibetano Cantor', 19990, 29990, 4.8, 1234, 'Cuenco tibetano hecho a mano con mazo de cuero y cojín de seda', 33, '🔔 TIBETANO'],
+  ['Set Stretching & Flexibilidad', 14990, 21990, 4.5, 8765, 'Set de estiramientos con banda elástica, bloque de yoga y guía', 32],
+  ['Almohadilla Térmica Eléctrica', 19990, 29990, 4.6, 5432, 'Almohadilla térmica eléctrica con 6 niveles de calor y apagado auto', 33, '🔥 TÉRMICA'],
+  ['Set Aceite CBD x3', 49990, 74990, 4.7, 2109, 'Set de 3 aceites CBD orgánicos con diferentes concentraciones', 33, '🌿 CBD'],
+  ['Hamaca Jardín con Soporte', 79990, 114990, 4.8, 876, 'Hamaca de algodón con soporte de acero y capacidad 200kg', 30, '🏖️ HAMACA'],
+];
+
+// ===================== DRINKS (20) =====================
+const drinksItems: Array<[string, number, number, number, number, string, number, string?]> = [
+  ['Vino Tinto Reserva Cabernet', 12990, 18990, 4.7, 6543, 'Vino tinto reserva Cabernet Sauvignon de Valle de Colchagua', 32, '🍷 CHILENO'],
+  ['Vino Blanco Sauvignon Blanc', 9990, 14990, 4.6, 4321, 'Vino blanco fresco con notas cítricas y mineralidad elegante', 33],
+  ['Pack Cervezas Artesanales x12', 24990, 36990, 4.8, 8765, 'Pack de 12 cervezas artesanales de diferentes estilos y sabores', 32, '🍺 ARTESANAL'],
+  ['Whisky Escocés 12 Años', 49990, 74990, 4.9, 2109, 'Whisky escocés single malt añejo 12 años con notas de vainilla', 33, '🥃 PREMIUM'],
+  ['Ron Añejo Caribeño 8 Años', 29990, 44990, 4.7, 5432, 'Ron caribeño añejo 8 años con notas de caramelo y coco tostado', 33, '🥃 RON'],
+  ['Tequila Reposado Premium', 34990, 49990, 4.8, 3210, 'Tequila reposado 100% agave con 6 meses en barricas de roble', 30, '🍋 TEQUILA'],
+  ['Pack Jugos Naturales x6', 14990, 21990, 4.6, 8765, 'Pack de 6 jugos naturales cold-pressed sin azúcar añadida', 32, '🧃 NATURAL'],
+  ['Set Té Matcha Ceremonial', 24990, 36990, 4.8, 4321, 'Té matcha ceremonial japonés con batidor chasen y cuenco', 32, '🍵 MATCHA'],
+  ['Café Especialidad Grano 1kg', 19990, 29990, 4.9, 6543, 'Café de especialidad en grano, origen único, tostado artesanal', 33, '☕ ESPECIALIDAD'],
+  ['Pack Kombucha x6', 14990, 21990, 4.5, 9876, 'Pack de 6 kombuchas artesanales con diferentes sabores fermentados', 32, '🍾 KOMBUCHA'],
+  ['Gin Tónica Premium Set', 39990, 59990, 4.7, 2109, 'Set de gin artesanal con 4 tónicas premium y especias botánicas', 33, '🍸 GIN'],
+  ['Vermouth Artesanal Español', 19990, 29990, 4.6, 5432, 'Vermouth artesanal español con hierbas aromáticas y cítricos', 33, '🍷 VERMOUTH'],
+  ['Pack Smoothies Congelados x8', 19990, 29990, 4.7, 3210, 'Pack de 8 smoothies congelados listos para licuar', 33, '🥤 SMOOTHIE'],
+  ['Sidra Artesanal Manzana', 9990, 14990, 4.5, 8765, 'Sidra artesanal de manzana fermentada naturalmente', 33, '🍎 SIDRA'],
+  ['Set Cócteles Premix x4', 24990, 36990, 4.6, 4321, 'Set de 4 premix para cócteles: Margarita, Mojito, Piña Colada, Cosmo', 32, '🍹 CÓCTEL'],
+  ['Agua Mineral Gasificada x12', 9990, 14990, 4.4, 6543, 'Pack de 12 botellas de agua mineral gasificada premium', 33, '💧 MINERAL'],
+  ['Pack Vinos Orgánicos x3', 34990, 49990, 4.8, 2109, 'Pack de 3 vinos orgánicos certificados de diferentes cepas', 30, '🌿 ORGÁNICO'],
+  ['Cerveza IPA Artesanal x6', 14990, 21990, 4.7, 876, 'Pack de 6 cervezas IPA artesanales con lúpulos seleccionados', 32, '🍺 IPA'],
+  ['Champagne Brut Reserva', 49990, 74990, 4.9, 1234, 'Champagne brut reserva con 36 meses de crianza en botella', 33, '🍾 CHAMPAGNE'],
+  ['Pack Bebidas Energéticas x12', 19990, 29990, 4.5, 5432, 'Pack de 12 bebidas energéticas naturales con cafeína de té verde', 33, '⚡ ENERGÍA'],
+];
+
+// ===================== MUSIC (20) =====================
+const musicItems: Array<[string, number, number, number, number, string, number, string?]> = [
+  ['Guitarra Eléctrica Stratocaster', 299990, 429990, 4.8, 2109, 'Guitarra eléctrica estilo Stratocaster con pastillas single-coil', 30, '🎸 ELÉCTRICA'],
+  ['Guitarra Acústica Clásica', 149990, 219990, 4.7, 5432, 'Guitarra acústica clásica con tapa de abeto y diapasón de palisandro', 32, '🎸 ACÚSTICA'],
+  ['Teclado Musical 61 Teclas', 79990, 114990, 4.6, 8765, 'Teclado electrónico de 61 teclas con 200 ritmos y 100 canciones demo', 30, '🎹 TECLADO'],
+  ['Batería Electrónica Compacta', 199990, 289990, 4.8, 3210, 'Batería electrónica con pads sensibles, 30 kits y conexión MIDI', 31, '🥁 BATERÍA'],
+  ['Micrófono Condensador Studio', 89990, 129990, 4.9, 1987, 'Micrófono condensador de estudio con patrón cardioide y shock mount', 31, '🎤 STUDIO'],
+  ['Auriculares Monitoreo DJ', 69990, 99990, 4.7, 4321, 'Auriculares de monitoreo para DJ con aislamiento y graves potentes', 30, '🎧 DJ'],
+  ['Interface Audio USB', 49990, 74990, 4.8, 6543, 'Interface de audio USB con 2 entradas XLR, preamps y MIDI', 33, '🔌 INTERFACE'],
+  ['Set Ukelele Principiante', 29990, 44990, 4.6, 8765, 'Ukelele soprano con funda, afinador, púas y libro de acordes', 33, '🎸 UKELELE'],
+  ['Pedal Overdrive Clásico', 49990, 69990, 4.7, 3210, 'Pedal de overdrive clásico con tono cálido y sustain natural', 29, '🎛️ PEDAL'],
+  ['Amplificador Guitarra 40W', 149990, 219990, 4.8, 2109, 'Amplificador de guitarra 40W con efectos integrados y Bluetooth', 32, '🔊 AMP'],
+  ['Set Cuerdas Guitarra x3', 14990, 21990, 4.5, 5432, 'Pack de 3 juegos de cuerdas para guitarra eléctrica de níquel', 32, '🎸 CUERDAS'],
+  ['Soporte Partituras Atril', 19990, 29990, 4.6, 1987, 'Atril para partituras plegable con bolsa de transporte', 33, '📄 ATRIL'],
+  ['Metrónomo Digital Clip', 9990, 14990, 4.4, 8765, 'Metrónomo digital con clip, 9 ritmos y afinador cromático', 33, '⏱️ METRÓNOMO'],
+  ['Bajo Eléctrico 4 Cuerdas', 249990, 349990, 4.7, 4321, 'Bajo eléctrico de 4 cuerdas con cuerpo de tilo y pastillas pasivas', 29, '🎸 BAJO'],
+  ['Violín Estudiante 4/4', 89990, 129990, 4.6, 2109, 'Violín 4/4 para estudiantes con arco, resina y estuche duro', 31, '🎻 VIOLÍN'],
+  ['Set Percusión Cajón', 49990, 74990, 4.8, 876, 'Cajón peruano con funda acolchada y método de aprendizaje', 33, '🥁 CAJÓN'],
+  ['Controlador MIDI 49 Teclas', 149990, 219990, 4.7, 1234, 'Controlador MIDI con 49 teclas, pads y knobs asignables', 32, '🎹 MIDI'],
+  ['Saxofón Alto Dorado', 399990, 549990, 4.8, 654, 'Saxofón alto en Mi bemol con acabado dorado y estuche', 27, '🎷 SAXOFÓN'],
+  ['Set Bongos Madera Natural', 29990, 44990, 4.6, 3210, 'Par de bongos de madera natural con parche de piel auténtica', 33, '🥁 BONGOS'],
+  ['Afinador Clip Cromático', 4990, 7990, 4.5, 8765, 'Afinador cromático de clip con pantalla LCD y precisión ±0.5 cent', 38, '🎵 AFINADOR'],
+];
+
+// Combine all
+export const products: Product[] = [
+  ...genProducts('food', foodItems),
+  ...genProducts('tech', techItems),
+  ...genProducts('fashion', fashionItems),
+  ...genProducts('beauty', beautyItems),
+  ...genProducts('home', homeItems),
+  ...genProducts('gaming', gamingItems),
+  ...genProducts('sports', sportsItems),
+  ...genProducts('pets', petsItems),
+  ...genProducts('toys', toysItems),
+  ...genProducts('books', booksItems),
+  ...genProducts('auto', autoItems),
+  ...genProducts('wellness', wellnessItems),
+  ...genProducts('drinks', drinksItems),
+  ...genProducts('music', musicItems),
+];
+
+export const formatPrice = (price: number): string => {
+  return new Intl.NumberFormat('es-CL', {
+    style: 'currency',
+    currency: 'CLP',
+    minimumFractionDigits: 0,
+  }).format(price);
+};
