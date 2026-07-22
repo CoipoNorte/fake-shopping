@@ -2,6 +2,8 @@
 
 Simulador de compras online con estilo, dopamina y una experiencia de tienda muy atractiva.
 
+![view](public/fake-shopping.png)
+
 ## ¿Qué incluye?
 - Catálogo de productos con diseño visual tipo e-commerce
 - Carrito flotante y modal de checkout
